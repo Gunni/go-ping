@@ -27,4 +27,5 @@
 
 # TODO
 
-* Perform needed DNS lookups first, outside of the "ping" function so that it is not factored in the total time taken
+* Add the ability to set source address
+
