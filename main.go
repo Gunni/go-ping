@@ -26,7 +26,7 @@ func main() {
 	host := flag.Arg(0)
 
 	if host == "" || flag.NArg() != 1 {
-		fmt.Printf("The host argument is not optional\n", flag.Arg(0))
+		fmt.Printf("The host argument is not optional!\n")
 		os.Exit(-1)
 	}
 	// Arguments done
