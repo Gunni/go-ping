@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"math"
 	"net"
 	"os"
 	"time"
@@ -66,7 +67,8 @@ func process(count uint64, delay float64, timeout float64, tcphost *net.TCPAddr)
 		if err != nil {
 			errn := err.(net.Error)
 			if errn.Timeout() {
-				fmt.Printf("timeout;0.000000\n")
+				// Timeouts are NaNs
+				fmt.Printf("%f\n", math.NaN())
 				ret = 1
 			} else {
 				// Unknown error
@@ -94,12 +96,14 @@ func ping(timeout time.Duration, tcphost *net.TCPAddr) (duration time.Duration, 
 	// Start timer
 	start := time.Now()
 
+	// Print out the destination
+	fmt.Printf("%s;", tcphost.String())
+
 	// Connect to destination host:port
 	conn, err := d.Dial("tcp", tcphost.String())
 	if err != nil {
 		return
 	}
-	fmt.Printf("%s;", conn.RemoteAddr().String())
 	defer conn.Close()
 
 	// Return time taken
