@@ -1,0 +1,26 @@
+image: golang:1.7
+
+stages:
+  - build
+  - run
+
+build:release:
+    stage: build
+    artifacts:
+        paths:
+          - go-ping
+    script:
+      - go build -o go-ping
+      - ls -lah
+
+run:release:
+    stage: run
+    dependencies:
+      - build:release
+    script:
+      - pwd
+      - ls -lah
+      - ./go-ping
+      - ./go-ping -h
+      - ./go-ping -c=1 -d=0 -p=80 -t=.1 localhost
+
