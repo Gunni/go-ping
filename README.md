@@ -27,5 +27,4 @@
 
 # TODO
 
-* Add the ability to set source address
-
+https://git.system.is/kjarni/go-ping/issues
