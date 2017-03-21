@@ -17,6 +17,6 @@ run:release:
     dependencies:
       - build:release
     script:
-      - ./go_ping -h 2>&1 | tee usage.log
+      - ./go-ping -h 2>&1 | tee usage.log
       - cat usage.log
       - grep 'Usage of' usage.log
